@@ -70,14 +70,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.4.0"
+  flutter_joystick:
+    dependency: "direct main"
+    description:
+      name: flutter_joystick
+      sha256: "5d718396d2a92f1dd0e4533650828052cc78ef6787be4d72288cbad14f1b43d5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.3"
   flutter_lints:
     dependency: "direct dev"
     description:
       name: flutter_lints
-      sha256: aeb0b80a8b3709709c9cc496cdc027c5b3216796bc0af0ce1007eaf24464fd4c
+      sha256: "2118df84ef0c3ca93f96123a616ae8540879991b8b57af2f81b76a7ada49b2a4"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.1"
+    version: "2.0.2"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -192,6 +200,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  wifi_iot:
+    dependency: "direct main"
+    description:
+      name: wifi_iot
+      sha256: "6c8d014ca935a893e1bfe0589a6e848a9027678237f856754da99e7bab3cf36b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.18"
+  wifi_scan:
+    dependency: "direct main"
+    description:
+      name: wifi_scan
+      sha256: aba3aa28f45b817356048022d0dde0c8b2e4054ed0151489bfc3103f7197d19d
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.0+1"
 sdks:
   dart: ">=3.0.3 <4.0.0"
-  flutter: ">=1.17.0"
+  flutter: ">=3.0.0"

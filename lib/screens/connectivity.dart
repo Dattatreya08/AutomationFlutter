@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iot/screens/bluetooth_connectivity.dart';
+import 'package:iot/screens/wifi_connectivity.dart';
+
 
 class Connectivity extends StatefulWidget {
   @override
@@ -54,9 +56,9 @@ class _ConnectivityState extends State<Connectivity> with SingleTickerProviderSt
         controller: _tabController,
         children: [
           // Content for Tab 1
-         BluetoothDevicesPage(),
+          BluetoothConnectivity(),
           // Content for Tab 2
-          Center(child: Text('WiFi')),
+          WifiConnectivity()
         ],
       ),
     );

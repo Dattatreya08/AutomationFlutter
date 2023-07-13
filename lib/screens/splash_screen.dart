@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:iot/helper/helper.dart';
-import 'package:iot/screens/home.dart';
+import 'package:iot/screens/home_screen.dart';
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
   @override
