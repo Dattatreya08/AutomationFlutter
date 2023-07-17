@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:iot/functionality/bluetooth_manager.dart';
+import 'package:iot/helper/helper.dart';
 
-class MyScreen extends StatelessWidget {
-  void _sendCommand(String command) {
-    BluetoothManager bluetoothManager = BluetoothManager();
-    bluetoothManager.sendCommand(command);
-  }
+class GestureButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('My Screen'),
       ),
-      body:  Center(
+      body:  const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -25,60 +22,25 @@ class MyScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CircleAvatar(
-                        radius: 30,
-                        child: IconButton(onPressed:(){
-                          _sendCommand("U");
-                        } ,
-                            icon: const Icon(Icons.swipe_up_alt)
-                        ),
-                      ),
+                      createCircularAvatar(30, "U", Icons.swipe_up_alt)
                     ],
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CircleAvatar(
-                        radius: 30,
-                          child: IconButton(onPressed:(){
-                            _sendCommand("L");
-                          } ,
-                              icon: const Icon(Icons.swipe_left_alt)
-                          ),
-                      ),
-                      const SizedBox(width: 20),
-                      CircleAvatar(
-                        radius: 30,
-                        child: IconButton(onPressed:(){
-                          _sendCommand("S");
-                        } ,
-                            icon: const Icon(Icons.circle)
-                        ),
-                      ),
-                      const SizedBox(width: 20),
-                      CircleAvatar(
-                        radius: 30,
-                        child: IconButton(onPressed:(){
-                          _sendCommand("R");
-                        } ,
-                            icon: const Icon(Icons.swipe_right_alt)
-                        ),
-                      ),
+                      createCircularAvatar(30, "L", Icons.swipe_left_alt),
+                      SizedBox(width: 20),
+                      createCircularAvatar(30, "S", Icons.circle),
+                      SizedBox(width: 20),
+                      createCircularAvatar(30, "R", Icons.swipe_right_alt)
                     ],
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CircleAvatar(
-                        radius: 30,
-                          child: IconButton(onPressed:(){
-                            _sendCommand("D");
-                          } ,
-                              icon: const Icon(Icons.swipe_down_alt)
-                          ),
-                      ),
+                      createCircularAvatar(30, "D", Icons.swipe_down_alt_rounded)
                     ],
                   ),
                 ],

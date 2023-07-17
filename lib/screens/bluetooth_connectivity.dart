@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:iot/functionality/bluetooth_manager.dart';
@@ -121,9 +118,6 @@ class _BluetoothConnectivityState extends State<BluetoothConnectivity> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Bluetooth Connectivity'),
-      ),
       body: RefreshIndicator(
         onRefresh: () => _refreshDevices(),
         child: ListView.builder(

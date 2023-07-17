@@ -40,6 +40,20 @@ class More extends StatelessWidget {
             }));
           },
         ),
+        ListTile(
+          leading: const Icon(Icons.control_camera,
+            color:Color.fromARGB(255, 0, 52, 122),
+          ),
+          title: const Text("Gesture Car Controller",
+              style: TextStyle(color:Color.fromARGB(255, 0, 52, 122),fontWeight: FontWeight.bold)
+          ),
+          onTap: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (BuildContext context) {
+              return GestureButton();
+            }));
+          },
+        ),
       ]),
     );
   }

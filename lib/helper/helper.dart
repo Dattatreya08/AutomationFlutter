@@ -29,6 +29,7 @@ class CreateImage extends StatelessWidget {
 
 }
 
+
 class CreateText extends StatelessWidget {
   final String text;
   const CreateText(String this.text,{Key? key}) : super(key: key);
@@ -37,6 +38,7 @@ class CreateText extends StatelessWidget {
     return const Placeholder();
   }
 }
+
 
 class CreateIconButton extends StatelessWidget {
   final dynamic chooseIcon;
@@ -164,5 +166,35 @@ class CreateMarque extends StatelessWidget {
     );
   }
 }
+
+class createCircularAvatar extends StatelessWidget {
+  final double _radius;
+  final String _command;
+  final IconData _chooseIcon;
+  const createCircularAvatar(this._radius,this._command,this._chooseIcon,{Key? key}) : super(key: key);
+
+  void _sendCommand(String command) {
+    BluetoothManager bluetoothManager = BluetoothManager();
+    bluetoothManager.sendCommand(command);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      child: CircleAvatar(
+        radius: _radius,
+        child: Icon(_chooseIcon),
+        // child: IconButton(onPressed:(){
+        //   _sendCommand(_command);
+        // } ,
+        //     icon: Icon(_chooseICon)
+        // ),
+      ),onTap: (){
+        _sendCommand(_command);
+    },
+    );
+  }
+}
+
 
 
