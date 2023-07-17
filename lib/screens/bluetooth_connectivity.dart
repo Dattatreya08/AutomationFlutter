@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
+import 'package:iot/functionality/bluetooth_manager.dart';
 import 'package:iot/screens/bluetooth_info.dart';
 
 class BluetoothConnectivity extends StatefulWidget {
@@ -18,7 +19,6 @@ class _BluetoothConnectivityState extends State<BluetoothConnectivity> {
   bool _isDiscovering = false;
   bool? _isBluetoothEnabled;
   BluetoothDevice? _connectingDevice;
-  BluetoothConnection? _connection;
   Map<BluetoothDevice, String> _connectionStatus = {};
 
   @override
@@ -49,7 +49,6 @@ class _BluetoothConnectivityState extends State<BluetoothConnectivity> {
   @override
   void dispose() {
     _cancelDiscovery();
-    _connection?.close();
     super.dispose();
   }
 
@@ -89,9 +88,9 @@ class _BluetoothConnectivityState extends State<BluetoothConnectivity> {
   }
 
   Future<void> _connectToDevice(BluetoothDevice device) async {
-    if (_connection != null) {
-      await _connection!.close();
-      _connection = null;
+    BluetoothManager bluetoothManager = BluetoothManager();
+    if (bluetoothManager.isConnected()) {
+      bluetoothManager.closeConnection();
     }
 
     setState(() {
@@ -99,19 +98,14 @@ class _BluetoothConnectivityState extends State<BluetoothConnectivity> {
       _connectionStatus[device] = 'Connecting...';
     });
 
-    try {
-      BluetoothConnection connection =
-      await BluetoothConnection.toAddress(device.address);
+    await bluetoothManager.connectToDevice(device);
 
+    if (bluetoothManager.isConnected()) {
       setState(() {
         _connectingDevice = null;
         _connectionStatus[device] = 'Connected';
-        _connection = connection;
       });
-
-      // Do something with the connection, e.g., send/receive data
-    } catch (e) {
-      print('Connection failed: $e');
+    } else {
       setState(() {
         _connectingDevice = null;
         _connectionStatus[device] = 'Failed';
@@ -120,13 +114,8 @@ class _BluetoothConnectivityState extends State<BluetoothConnectivity> {
   }
 
   void _sendCommand(String command) {
-    if (_connection != null) {
-      Uint8List bytes = Uint8List.fromList(utf8.encode(command));
-      _connection!.output.add(bytes);
-      _connection!.output.allSent.then((_) {
-        print('Command sent: $command');
-      });
-    }
+    BluetoothManager bluetoothManager = BluetoothManager();
+    bluetoothManager.sendCommand(command);
   }
 
   @override
@@ -237,9 +226,9 @@ class _BluetoothConnectivityState extends State<BluetoothConnectivity> {
         currentIndex: 0,
         onTap: (index) {
           if (index == 0) {
-            _sendCommand('1'); // Send '2' command when 'On' button is tapped
+            _sendCommand('1'); // Send '1' command when 'On' button is tapped
           } else if (index == 1) {
-            _sendCommand('0'); // Send '3' command when 'Off' button is tapped
+            _sendCommand('0'); // Send '0' command when 'Off' button is tapped
           }
         },
       ),
